@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+</head>
+<body>
+    <h1>Todo List</h1>
+    <form method="post" action="{% url 'to_do_app' %}">
+        {% csrf_token %}
+        <input type="text" name="title" placeholder="Add a new task" required>
+        <button type="submit">Add</button>
+    </form>
+    <ul>
+        {% for todo in v_all_data %}
+            <li>
+                <input type="checkbox" {% if todo.is_complete %}checked{% endif %} id="todo_{{ todo.id }}">
+                <label for="todo_{{ todo.id }}">{{ todo.task_name }}</label>
+                <a href="{% url 'delete_todo' todo.id %}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

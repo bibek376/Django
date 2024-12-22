@@ -1,0 +1,95 @@
+{% extends "emp_app/templates/base.html" %}
+
+{% block content %}
+    <h1>Employee Registration</h1>
+    <form action="" method="POST" autocomplete="on" class="medium-form">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group">
+                <label for="{{ form.full_name.id_for_label }}">Full Name:</label>
+                {{ form.full_name }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.emp_code.id_for_label }}">Employee Code:</label>
+                {{ form.emp_code }}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="{{ form.mobile.id_for_label }}">Mobile Number:</label>
+                {{ form.mobile }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.position.id_for_label }}">Designation:</label>
+                {{ form.position }}
+            </div>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-success"><i class="fa fa-database" aria-hidden="true"></i> Submit</button>
+    </form>
+    <a href="{% url 'emp_list' %}" class="back-link">Back to List</a>
+    <style>
+        /* Your existing styles here... */
+
+        h1 {
+            text-align: center;
+            background-color: #3498db;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .medium-form {
+            width: 60%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .form-group {
+            flex-basis: 48%;
+            margin-bottom: 10px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        .btn-success {
+            background-color: #27ae60;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+        }
+
+        .btn-success:hover {
+            background-color: #219a52;
+        }
+
+        /* Styling for the "Back to List" link */
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #27ae60;
+        }
+    </style>
+{% endblock content %}

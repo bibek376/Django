@@ -1,0 +1,92 @@
+{% extends "emp_app/templates/base.html" %}
+
+{% block content %}
+    <h1>Employee Register</h1>
+    <div class="description">
+        <p>List Of Employees</p>
+    </div>
+    <table class="employee-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Employee Code</th>
+                <th>Mobile</th>
+                <th>Position</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employees %}
+                <tr>
+                    <td>{{employee.id}}</td>
+                    <td>{{ employee.full_name }}</td>
+                    <td>{{ employee.emp_code }}</td>
+                    <td>{{ employee.mobile }}</td>
+                    <td>{{ employee.position }}</td>
+                    <td>
+                       <a href="{% url 'edit_employee' employee.id %}">Edit</a>
+                       <span class="action-divider">|</span>
+                       <a href="{% url 'delete_employee' employee.id %}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a class="add-button" href="{% url 'employee_insert_update' %}">Add Employee</a>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            background-color: #3498db;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .description {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .description p {
+            font-size: 24px;
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        .employee-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            background-color: #fff;
+            border: 1px solid #ccc;
+        }
+
+        .employee-table th,
+        .employee-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .employee-table th {
+            background-color: #3498db;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .employee-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .employee-table tr:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+{% endblock content %}
