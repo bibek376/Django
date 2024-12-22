@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            background-color: #3498db;
+            color: #fff;
+            padding: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            background-color: #fff;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        a {
+            text-decoration: none;
+            color: #3498db;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .actions {
+            display: flex;
+            gap: 20px; /* Increased spacing here */
+        }
+
+        .add-button {
+            display: block;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .todo-info {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .todo-title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .completed {
+            font-weight: bold;
+            color: #27ae60; /* Green color for completed tasks */
+            display: flex;
+            justify-content: flex-end; /* Align text to the right */
+            align-items: center; /* Vertically align checkbox and text */
+        }
+
+        .completed-checkbox {
+            margin-left: 10px; /* Add some space between the checkbox and text */
+        }
+    </style>
+</head>
+<body>
+    <h1>To-Do List</h1>
+    <ul>
+        {% for todo in forms %}
+            <li>
+                <div class="todo-info">
+                    <span class="todo-title">{{ todo.title }}</span>
+                    <label class="completed">
+                        <input class="completed-checkbox" type="checkbox" {% if todo.completed %}checked{% endif %} disabled>
+                    </label>
+                </div>
+                <div class="actions">
+                    <a href="{% url 'update_todo' todo.id %}">Edit</a>
+                    <a href="{% url 'delete_todo' todo.id %}">Delete</a>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+    <a class="add-button" href="{% url 'add_todo' %}">Add To-Do</a>
+</body>
+</html>
